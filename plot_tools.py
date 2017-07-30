@@ -14,9 +14,9 @@ from bokeh.plotting import figure, show, output_file
 from datetime import datetime
 
 
-def timeseries_plot(df, plot_param, time_param, filename=None):
-	if not filename:
-		filename = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+def timeseries_plot(df, plot_param, time_param, filepath=None):
+	if not filepath:
+		filepath = 'temp.html'
 	df_plot = df[plot_param+[time_param]]
 	df_plot[time_param] = pd.to_datetime(df_plot[time_param], errors='coerce')
 	df_plot = df_plot[df_plot[time_param].notnull()]
@@ -25,5 +25,5 @@ def timeseries_plot(df, plot_param, time_param, filename=None):
 	line_colors = ["blue", "orange", "green", "purple"]
 	for i in range(len(plot_param)):
 	    r = p.line(df_plot.index.values, df_plot[plot_param[i]], color=line_colors[i])
-	output_file(filename + '.html')
+	output_file(filepath)
 	save(p)
