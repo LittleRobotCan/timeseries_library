@@ -16,6 +16,6 @@ $ wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
 $ bash Anaconda3-4.4.0-Linux-x86_64.sh
 $ sudo apt-get install git
 $ source ~/.bashrc
-$ pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
+$ pip install --no-deps --no-cache-dir git+https://github.com/Theano/Theano.git@0282eac71106baa0c99af8ec98afe042b4e8d4d5
 $ pip install keras
 # finally import keras in python. it will fail. then change settings of ~/.keras/keras.json to use theano instead of tensorflow
