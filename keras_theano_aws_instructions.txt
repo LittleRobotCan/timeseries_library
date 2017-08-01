@@ -5,3 +5,17 @@ $ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda
 $ sudo dpkg -i cuda-repo-ubuntu1404-8-0-local-ga2_8.0.61-1_amd64-deb
 $ sudo apt-get update
 $ sudo apt-get install -y cuda nvidia-cuda-toolkit
+$ scp -i ~/.ssh/hadoop_instance.pem ~/Downloads/cudnn-8.0-linux-x64-v5.0-ga.tgz ubuntu@public_dns_ec2:/home/ubuntu/
+$ tar -zxvf cudnn-8.0-linux-x64-v5.0-ga.tgz 
+# open .bashrc and add following ...
+export LD_LIBRARY_PATH=/home/ubuntu/cuda/lib64:$LD_LIBRARY_PATH
+export CPATH=/home/ubuntu/cuda/include:$CPATH
+export LIBRARY_PATH=/home/ubuntu/cuda/lib64:$LD_LIBRARY_PATH
+$ source ~/.bashrc
+$ wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
+$ bash Anaconda3-4.4.0-Linux-x86_64.sh
+$ sudo apt-get install git
+$ source ~/.bashrc
+$ pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
+$ pip install keras
+# finally import keras in python. it will fail. then change settings of ~/.keras/keras.json to use theano instead of tensorflow
